@@ -29,9 +29,9 @@ public class SkillsController {
     @PostMapping("/add")
     public ResponseEntity<Skills> crearSkills(@RequestBody Skills skills){
         Skills nuevaSkills=skillsService.addSkills(skills);
-        return new ResponseEntity<>(nuevaSkills, HttpStatus.CREATED)
+        return new ResponseEntity<>(nuevaSkills, HttpStatus.CREATED);
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> borrarSkills(@PathVariable("id")Long id){
         skillsService.borrarSkills(id);
         return new ResponseEntity<>(HttpStatus.OK);

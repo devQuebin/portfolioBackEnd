@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/educacion")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EducacionController {
     private final EducacionService educacionService;
 
@@ -31,7 +32,7 @@ public class EducacionController {
         Educacion nuevaEducacion=educacionService.addEducacion(educacion);
         return new ResponseEntity<>(nuevaEducacion, HttpStatus.CREATED);
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> borrarEducacion(@PathVariable("id")Long id){
         educacionService.borrarEducacion(id);
         return new ResponseEntity<>(HttpStatus.OK);

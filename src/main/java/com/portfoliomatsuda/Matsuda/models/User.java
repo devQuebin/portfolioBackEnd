@@ -32,8 +32,8 @@ public class User implements Serializable {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        Titulo = titulo;
-        About = about;
+        this.Titulo = titulo;
+        this.About = about;
         this.fotoPerfil = fotoPerfil;
     }
 
