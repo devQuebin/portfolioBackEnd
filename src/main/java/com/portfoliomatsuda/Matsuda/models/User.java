@@ -1,87 +1,84 @@
 package com.portfoliomatsuda.Matsuda.models;
 
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 @Entity
-public class User implements Serializable {
+@Table(name="users")
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
-    private String nombre;
-    private String apellido;
-    private String Titulo;
-    private String About;
-    private String fotoPerfil;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(nullable = false, unique = true, length = 50)
+    private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idEdu")
-    private List<Educacion> educacionList;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idExp")
-    private List<Experiencia> experienciaList;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idSkills")
-    private List<Skills> skillsList;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCon")
-    private List<Contacto> contactoList;
+    @Column(nullable = false)
+    private String password;
 
     public User() {
     }
 
-    public User(Long id, String nombre, String apellido, String titulo, String about, String fotoPerfil) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.Titulo = titulo;
-        this.About = about;
-        this.fotoPerfil = fotoPerfil;
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getApellido() {
-        return apellido;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public String getTitulo() {
-        return Titulo;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setTitulo(String titulo) {
-        Titulo = titulo;
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 
-    public String getAbout() {
-        return About;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setAbout(String about) {
-        About = about;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public String getFotoPerfil() {
-        return fotoPerfil;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

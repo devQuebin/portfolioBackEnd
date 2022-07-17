@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/educacion")
+@RequestMapping("/api/educacion")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EducacionController {
     private final EducacionService educacionService;
@@ -17,22 +17,22 @@ public class EducacionController {
     public EducacionController(EducacionService educacionService) {
         this.educacionService = educacionService;
     }
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Educacion> editarEducacion(@RequestBody Educacion educacion){
         Educacion updateEducacion=educacionService.editarEducacion(educacion);
         return new ResponseEntity<>(updateEducacion, HttpStatus.OK);
     }
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Educacion>> obtenerEducacion(){
         List<Educacion> educaciones=educacionService.buscarEducacion();
         return new ResponseEntity<>(educaciones, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Educacion> crearEducacion(@RequestBody Educacion educacion){
         Educacion nuevaEducacion=educacionService.addEducacion(educacion);
         return new ResponseEntity<>(nuevaEducacion, HttpStatus.CREATED);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarEducacion(@PathVariable("id")Long id){
         educacionService.borrarEducacion(id);
         return new ResponseEntity<>(HttpStatus.OK);
