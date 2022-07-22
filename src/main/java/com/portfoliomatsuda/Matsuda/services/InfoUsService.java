@@ -11,11 +11,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserService {
+public class InfoUsService {
     private final InfoUsRepo userRepo;
 
     @Autowired
-    public UserService(InfoUsRepo userRepo) {
+    public InfoUsService(InfoUsRepo userRepo) {
         this.userRepo = userRepo;
     }
     public InfoUs addUser(InfoUs infoUs){

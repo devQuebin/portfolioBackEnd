@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contacto")
+@RequestMapping("/api/contacto")
 public class ContactoController {
 
     private final ContactoService contactoService;
@@ -17,22 +17,22 @@ public class ContactoController {
     public ContactoController(ContactoService contactoService) {
         this.contactoService=contactoService;
     }
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Contacto> editarContacto (@RequestBody Contacto contacto){
         Contacto updateContacto=contactoService.editarContacto(contacto);
         return new ResponseEntity<>(updateContacto, HttpStatus.OK);
     }
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Contacto>> obtenerContacto(){
         List<Contacto> contactos=contactoService.buscarContacto();
         return new ResponseEntity<>(contactos, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Contacto> crearContacto(@RequestBody Contacto contacto){
         Contacto nuevoContacto=contactoService.addContacto(contacto);
         return new ResponseEntity<>(nuevoContacto, HttpStatus.CREATED);
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarContacto (@PathVariable("id") Long id){
     contactoService.borrarContacto(id);
     return new ResponseEntity<>(HttpStatus.OK);
