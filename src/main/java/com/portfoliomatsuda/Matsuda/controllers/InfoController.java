@@ -21,6 +21,7 @@ public class InfoController {
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
     @PutMapping
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Info> editarInfo(@RequestBody Info info){
         Info updateInfo = infoService.editarInfo(info);
         return new ResponseEntity<>(updateInfo, HttpStatus.OK);
