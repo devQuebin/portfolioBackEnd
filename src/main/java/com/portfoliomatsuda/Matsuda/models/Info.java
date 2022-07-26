@@ -5,16 +5,16 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class InfoUs implements Serializable {
+public class Info implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
     private String nombre;
     private String apellido;
-    private String Titulo;
-    private String About;
-    private String fotoPerfil;
+    private String titulo;
+    private String about;
+    private String fotoperfil;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idEdu")
     private List<Educacion> educacionList;
@@ -22,19 +22,19 @@ public class InfoUs implements Serializable {
     private List<Experiencia> experienciaList;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idSkills")
     private List<Skills> skillsList;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCon")
-    private List<Contacto> contactoList;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProy")
+    private List<Proyecto> proyectoList;
 
-    public InfoUs() {
+    public Info() {
     }
 
-    public InfoUs(Long id, String nombre, String apellido, String titulo, String about, String fotoPerfil) {
+    public Info(Long id, String nombre, String apellido, String titulo, String about, String fotoperfil) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.Titulo = titulo;
-        this.About = about;
-        this.fotoPerfil = fotoPerfil;
+        this.titulo = titulo;
+        this.about = about;
+        this.fotoperfil = fotoperfil;
     }
 
     public Long getId() {
@@ -62,26 +62,26 @@ public class InfoUs implements Serializable {
     }
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
-        Titulo = titulo;
+        this.titulo = titulo;
     }
 
     public String getAbout() {
-        return About;
+        return about;
     }
 
     public void setAbout(String about) {
-        About = about;
+        this.about = about;
     }
 
-    public String getFotoPerfil() {
-        return fotoPerfil;
+    public String getFotoperfil() {
+        return fotoperfil;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setFotoperfil(String fotoperfil) {
+        this.fotoperfil = fotoperfil;
     }
 }
